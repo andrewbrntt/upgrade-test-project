@@ -1,16 +1,26 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { StateMachineProvider, createStore } from "little-state-machine";
+import Step1 from "./views/Step1";
+
+createStore({
+  data: {
+    firstName: "",
+    email: "",
+    password: "",
+  },
+});
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <header>
-          <h1>Welcome to Upgrade challenge</h1>
-        </header>
-        <p>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <StateMachineProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Step1 />} />
+          </Routes>
+        </Router>
+      </StateMachineProvider>
     );
   }
 }
