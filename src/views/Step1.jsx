@@ -1,18 +1,32 @@
+import { useStateMachine } from "little-state-machine";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import updateAction from "../utils/updateAction";
 import { isValidEmail } from "../utils/validation";
 
 const Step1 = () => {
+  const navigate = useNavigate();
+  const { actions, state } = useStateMachine({ updateAction });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      firstName: state.firstName,
+      email: state.email,
+      password: state.password,
+    },
+  });
 
-  const onSubmit = () => {
-    console.log("next button triggered");
+  const onSubmit = (data) => {
+    actions.updateAction(data);
+
+    navigate("/more-info");
   };
 
   return (
@@ -23,8 +37,8 @@ const Step1 = () => {
           {...register("firstName", {
             required: "Required",
           })}
-          placeholder="First Name"
           error={errors.firstName?.message}
+          placeholder="First Name"
         />
         <Input
           {...register("email", {
@@ -34,8 +48,8 @@ const Step1 = () => {
               message: "Please enter a valid email",
             },
           })}
-          placeholder="E-Mail"
           error={errors.email?.message}
+          placeholder="E-Mail"
         />
         <Input
           {...register("password", {
@@ -45,8 +59,8 @@ const Step1 = () => {
               message: "Please use at least 8 characters",
             },
           })}
-          placeholder="Password"
           error={errors.password?.message}
+          placeholder="Password"
         />
       </div>
       <Button className="mt-6">Next</Button>
