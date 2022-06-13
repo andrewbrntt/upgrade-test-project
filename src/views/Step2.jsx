@@ -54,6 +54,7 @@ const Step1 = () => {
     return () => {
       abortController.abort();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onBackButtonClick = () => {
@@ -69,7 +70,7 @@ const Step1 = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Additional Info</h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col mb-6 min-h-[200px]">
         <Select
           {...register("color", {
             required: "Required",
@@ -88,16 +89,13 @@ const Step1 = () => {
         />
       </div>
       <Button
-        className="mt-6 mr-2"
+        className="mr-2"
+        cta="Back"
         type="button"
         onClick={() => onBackButtonClick()}
         variant="secondary"
-      >
-        Back
-      </Button>
-      <Button className="mt-6" type="submit">
-        Next
-      </Button>
+      />
+      <Button cta="Next" />
     </form>
   );
 };

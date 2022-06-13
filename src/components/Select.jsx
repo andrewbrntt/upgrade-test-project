@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 
 const Select = forwardRef(
@@ -35,5 +36,11 @@ const Select = forwardRef(
     );
   }
 );
+
+Select.propTypes = {
+  error: PropTypes.string,
+  placeholder: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default Select;

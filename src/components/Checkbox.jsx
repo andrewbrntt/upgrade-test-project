@@ -16,6 +16,7 @@ const Checkbox = forwardRef(({ error, ...props }, forwardRef) => {
           <a
             className="underline text-blue-500"
             href="https://www.upgrade.com/funnel/borrower-documents/TERMS_OF_USE"
+            rel="noreferrer"
             target="_blank"
           >
             Terms and Conditions

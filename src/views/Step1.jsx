@@ -17,7 +17,7 @@ const Step1 = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: state.firstName,
+      name: state.name,
       email: state.email,
       password: state.password,
     },
@@ -32,12 +32,12 @@ const Step1 = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Sign Up</h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col mb-6 min-h-[200px]">
         <Input
-          {...register("firstName", {
+          {...register("name", {
             required: "Required",
           })}
-          error={errors.firstName?.message}
+          error={errors.name?.message}
           placeholder="First Name"
         />
         <Input
@@ -63,7 +63,7 @@ const Step1 = () => {
           placeholder="Password"
         />
       </div>
-      <Button className="mt-6">Next</Button>
+      <Button cta="Next" />
     </form>
   );
 };
