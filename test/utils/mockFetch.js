@@ -1,4 +1,4 @@
-export default async function mockFetch(url, config) {
+export default async function mockFetch(url) {
   switch (url) {
     case "http://localhost:3001/api/colors": {
       return {

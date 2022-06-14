@@ -68,6 +68,22 @@ it("displays all stored values", async () => {
   );
 });
 
+it("handles unchecked terms", async () => {
+  useStateMachine.mockImplementation(() => ({
+    actions: {
+      updateAction: jest.fn(),
+    },
+    state: {
+      ...INITIAL_STATE,
+      terms: false,
+    },
+  }));
+
+  setup(<Confirmation />);
+
+  await screen.findByText("Terms and Conditions: Not Agreed");
+});
+
 it("handles back button", async () => {
   const useNavigateMock = jest.fn();
   useNavigate.mockImplementation(() => useNavigateMock);

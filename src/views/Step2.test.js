@@ -102,6 +102,19 @@ it("handles failed getColors endpoint", async () => {
   expect(alertMock).toHaveBeenCalled();
 });
 
+it("handles unfulfilled getColors promise", async () => {
+  global.fetch.mockImplementation(
+    () => new Promise((resolve) => setTimeout(resolve, 5000))
+  );
+
+  const alertMock = jest.spyOn(window, "alert").mockImplementation();
+
+  const { unmount } = setup(<Step2 />);
+  unmount();
+
+  expect(alertMock).not.toHaveBeenCalled();
+});
+
 it("handles back button", async () => {
   const useNavigateMock = jest.fn();
   useNavigate.mockImplementation(() => useNavigateMock);
