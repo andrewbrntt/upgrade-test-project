@@ -68,13 +68,14 @@ const Step1 = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form data-testid="more-info-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Additional Info</h1>
       <div className="flex flex-col mb-6 min-h-[200px]">
         <Select
           {...register("color", {
-            required: "Required",
+            required: "Color required",
           })}
+          data-testid="color-select"
           defaultValue=""
           error={errors.color?.message}
           options={colors}
@@ -82,11 +83,24 @@ const Step1 = () => {
         />
         <Checkbox
           {...register("terms", {
-            required: "Required",
+            required: "Terms acceptance required",
           })}
+          data-testid="terms-checkbox"
           error={errors.terms?.message}
-          placeholder="E-Mail"
-        />
+        >
+          <span className="ml-2">
+            I agree to{" "}
+            <a
+              className="underline text-blue-500"
+              href="https://www.upgrade.com/funnel/borrower-documents/TERMS_OF_USE"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Terms and Conditions
+            </a>
+            .
+          </span>
+        </Checkbox>
       </div>
       <Button
         className="mr-2"

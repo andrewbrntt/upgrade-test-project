@@ -33,4 +33,15 @@ module.exports = {
       version: "detect",
     },
   },
+  overrides: [
+    {
+      files: "**/*.test.{js,jsx}",
+      env: { jest: true },
+      extends: ["plugin:testing-library/react", "plugin:jest-dom/recommended"],
+      rules: {
+        "testing-library/no-container": "OFF",
+        "testing-library/no-node-access": "OFF",
+      },
+    },
+  ],
 };

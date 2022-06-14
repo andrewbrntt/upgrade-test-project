@@ -30,22 +30,22 @@ const Step1 = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form data-testid="signup-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Sign Up</h1>
       <div className="flex flex-col mb-6 min-h-[200px]">
         <Input
           {...register("name", {
-            required: "Required",
+            required: "Name required",
           })}
           error={errors.name?.message}
           placeholder="First Name"
         />
         <Input
           {...register("email", {
-            required: "Required",
+            required: "E-Mail required",
             pattern: {
               value: isValidEmail,
-              message: "Please enter a valid email",
+              message: "Please enter a valid e-mail",
             },
           })}
           error={errors.email?.message}
@@ -53,7 +53,7 @@ const Step1 = () => {
         />
         <Input
           {...register("password", {
-            required: "Required",
+            required: "Password required",
             minLength: {
               value: 8,
               message: "Please use at least 8 characters",

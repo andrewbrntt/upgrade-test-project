@@ -23,7 +23,7 @@ const ConfirmationStatus = ({ status }) => {
   };
 
   return (
-    <>
+    <div data-testid="confirmation-status-view">
       <h1 className="text-2xl text-center mb-6">
         {isSuccessfulConfirmation ? "Success!" : "Error"}
       </h1>
@@ -38,7 +38,7 @@ const ConfirmationStatus = ({ status }) => {
         </span>
       </div>
       <Button cta="Restart" onClick={() => onRestartClick()} />
-    </>
+    </div>
   );
 };
 

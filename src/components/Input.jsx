@@ -12,7 +12,11 @@ const Input = forwardRef(({ error, ...props }, forwardRef) => {
         ref={forwardRef}
         {...props}
       />
-      {error && <span className="mt-1 text-red-500">{error}</span>}
+      {error && (
+        <span className="mt-1 text-red-500" role="alert">
+          {error}
+        </span>
+      )}
     </div>
   );
 });

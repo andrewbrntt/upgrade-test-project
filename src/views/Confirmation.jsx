@@ -36,7 +36,7 @@ const Confirmation = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form data-testid="confirmation-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Confirmation</h1>
       <div className="flex flex-col mb-6 min-h-[200px] items-center">
         <ul className="list-disc">
