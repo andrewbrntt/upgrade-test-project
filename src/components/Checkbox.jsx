@@ -1,6 +1,9 @@
 import clsx from "clsx";
 import React, { forwardRef } from "react";
 
+// Standard checkbox component with error styling
+// Usually I would add a label to the input but for this specific use case, a link is not accessible when part of a label so opted for no label
+// Assumption: safe to not use label for checkbox and render text instead
 const Checkbox = forwardRef(({ children, error, ...props }, forwardRef) => {
   return (
     <div className="flex flex-col mb-5">

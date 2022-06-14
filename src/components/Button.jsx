@@ -6,6 +6,7 @@ const styles = {
   secondary: "text-blue-700 bg-white",
 };
 
+// Standard button component with loading and two variants
 const Button = forwardRef(
   ({ className, cta, loading, variant = "primary", ...props }, forwardRef) => {
     return (
@@ -19,7 +20,6 @@ const Button = forwardRef(
         {...props}
       >
         <span className={clsx(loading && "opacity-0")}>{cta}</span>
-
         {loading && (
           <span className="flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <span

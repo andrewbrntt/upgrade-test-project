@@ -25,6 +25,10 @@ const Step1 = () => {
     },
   });
 
+  // Opted to load the colors when user reaches this step for logic simplicity
+  // If more complex, I would use react query and add queries to the initial step so that this data is pre-loaded (and to this step in case the user refreshes)
+  // Potential UX enhancement with current solution would be to check if color value exists and if so, do not call getColors again to avoid an extra request
+  // Assumption: getColors endpoint is quick enough that it can be called each time this step is loaded without impacting UX
   useEffect(() => {
     const abortController = new AbortController();
 
@@ -67,6 +71,10 @@ const Step1 = () => {
     navigate("../confirmation");
   };
 
+  // No explicit validation in readme so added a couple basic validations based on real world apps
+  // Assumption 1: Color is required
+  // Assumption 2: Terms and Conditions is required
+  // See Checkbox component for comment regarding rendering T&C verbiage in span instead of label
   return (
     <form data-testid="more-info-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Additional Info</h1>

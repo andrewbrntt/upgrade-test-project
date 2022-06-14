@@ -11,6 +11,7 @@ import updateAction from "../utils/updateAction";
 const SUCCESS_MESSAGE = "You should receive a confirmation email soon.";
 const ERROR_MESSAGE = "Uh oh, something went wrong. Please try again later.";
 
+// Assumption: Confirmation status can only be either success or error
 const ConfirmationStatus = ({ status }) => {
   const navigate = useNavigate();
   const { actions } = useStateMachine({ updateAction });

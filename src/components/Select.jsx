@@ -2,6 +2,11 @@ import clsx from "clsx";
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 
+// Standard select component with error styling
+// Different ways to render a select dropdown with default state
+// Assumption 1: select component without options will be considered to be in loading state
+// Assumption 2: loading select component displays spinner inline with placeholder text and loading text as lone option
+// Assumption 3: unopened/unselected select component will display placeholder text
 const Select = forwardRef(
   ({ error, options, placeholder, ...props }, forwardRef) => {
     return (

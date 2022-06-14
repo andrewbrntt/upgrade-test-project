@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React, { forwardRef } from "react";
 
+// Standard input component with error styling
 const Input = forwardRef(({ error, ...props }, forwardRef) => {
   return (
     <div className="flex flex-col mb-5">

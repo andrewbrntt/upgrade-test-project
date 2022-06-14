@@ -35,6 +35,7 @@ const Confirmation = () => {
     }
   };
 
+  // Assumption: All fields are visible to the user on load (even password)
   return (
     <form data-testid="confirmation-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Confirmation</h1>

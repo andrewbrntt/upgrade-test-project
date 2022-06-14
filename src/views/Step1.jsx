@@ -7,6 +7,7 @@ import Input from "../components/Input";
 import updateAction from "../utils/updateAction";
 import { isValidEmail } from "../utils/validation";
 
+// Opted to use react-hook-form for handling form state
 const Step1 = () => {
   const navigate = useNavigate();
   const { actions, state } = useStateMachine({ updateAction });
@@ -29,6 +30,10 @@ const Step1 = () => {
     navigate("/more-info");
   };
 
+  // No explicit validation in readme so added a couple basic validations based on real world apps
+  // Assumption 1: First name is required
+  // Assumption 2: E-mail is required and must match e-mail regex pattern
+  // Assumption 3: Password is required, must be at least 8 characters, and will be visible to the user
   return (
     <form data-testid="signup-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="text-2xl text-center mb-6">Sign Up</h1>
