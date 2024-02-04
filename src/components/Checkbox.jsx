@@ -16,7 +16,11 @@ const Checkbox = forwardRef(({ children, error, ...props }, forwardRef) => {
         />
         {children}
       </div>
-      {error && <span className="mt-1 text-red-500">{error}</span>}
+      { error && (
+        <span className="mt-1 text-red-700 font-bold" role="alert">
+          {error}
+        </span>
+      )}
     </div>
   );
 });

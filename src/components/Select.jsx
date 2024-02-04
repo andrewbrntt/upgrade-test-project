@@ -15,7 +15,7 @@ const Select = forwardRef(
           <select
             className={clsx(
               "border border-black h-11 px-3 w-full",
-              error && "border-red-500"
+              error && "border-red-700 focus:outline-none focus:ring focus:ring-red-700"
             )}
             ref={forwardRef}
             {...props}
@@ -46,7 +46,11 @@ const Select = forwardRef(
             </span>
           )}
         </div>
-        {error && <span className="mt-1 text-red-500">{error}</span>}
+        { error && (
+          <span className="mt-1 text-red-700 font-bold" role="alert">
+          {error}
+        </span>
+        )}
       </div>
     );
   }

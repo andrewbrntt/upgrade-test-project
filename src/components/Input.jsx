@@ -2,19 +2,22 @@ import clsx from "clsx";
 import React, { forwardRef } from "react";
 
 // Standard input component with error styling
-const Input = forwardRef(({ error, ...props }, forwardRef) => {
+const Input = forwardRef(({ requirements, error, ...props }, forwardRef) => {
   return (
     <div className="flex flex-col mb-5">
       <input
         className={clsx(
           "border border-black h-11 px-3",
-          error && "border-red-500"
+          error && "border-red-700 focus:outline-none focus:ring focus:ring-red-700"
         )}
         ref={forwardRef}
         {...props}
       />
-      {error && (
-        <span className="mt-1 text-red-500" role="alert">
+      { requirements &&
+        <span>{requirements}</span>
+      }
+      { error && (
+        <span className="mt-1 text-red-700 font-bold" role="alert">
           {error}
         </span>
       )}

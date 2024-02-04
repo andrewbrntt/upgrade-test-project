@@ -12,7 +12,7 @@ const Button = forwardRef(
     return (
       <button
         className={clsx(
-          "relative border rounded py-2 px-4 border-blue-700 focus:ring focus:ring-blueberry-700",
+          "relative border rounded py-2 px-4 border-blue-700 focus:ring focus:ring-blue-700",
           variant === "primary" ? styles.primary : styles.secondary,
           className
         )}

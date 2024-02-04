@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import updateAction from "../utils/updateAction";
-import { isValidEmail } from "../utils/validation";
+import { isValidEmail, isValidFirstName } from '../utils/validation'
+import { Helmet } from 'react-helmet'
 
 // Opted to use react-hook-form for handling form state
 const Step1 = () => {
   const navigate = useNavigate();
-  const { actions, state } = useStateMachine({ updateAction });
+  const { actions } = useStateMachine({ updateAction });
 
   const {
     register,
@@ -18,9 +19,9 @@ const Step1 = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: state.name,
-      email: state.email,
-      password: state.password,
+      firstname: '',
+      email: '',
+      password: '',
     },
   });
 
@@ -35,41 +36,66 @@ const Step1 = () => {
   // Assumption 2: E-mail is required and must match e-mail regex pattern
   // Assumption 3: Password is required, must be at least 8 characters, and will be visible to the user
   return (
-    <form data-testid="signup-form" onSubmit={handleSubmit(onSubmit)}>
-      <h1 className="text-2xl text-center mb-6">Sign Up</h1>
-      <div className="flex flex-col mb-6 min-h-[200px]">
-        <Input
-          {...register("name", {
-            required: "Name required",
-          })}
-          error={errors.name?.message}
-          placeholder="First Name"
-        />
-        <Input
-          {...register("email", {
-            required: "E-Mail required",
-            pattern: {
-              value: isValidEmail,
-              message: "Please enter a valid e-mail",
-            },
-          })}
-          error={errors.email?.message}
-          placeholder="E-Mail"
-        />
-        <Input
-          {...register("password", {
-            required: "Password required",
-            minLength: {
-              value: 8,
-              message: "Please use at least 8 characters",
-            },
-          })}
-          error={errors.password?.message}
-          placeholder="Password"
-        />
-      </div>
-      <Button cta="Next" />
-    </form>
+    <>
+      <Helmet>
+        <title>Sign Up Step (1/2) | Upgrade Challenge</title>
+      </Helmet>
+      <h1 className="text-2xl text-center mb-6">Sign Up (Step 1/2)</h1>
+      <form data-testid="signup-form" onSubmit={ handleSubmit(onSubmit) }>
+        <div className="flex flex-col mb-6 min-h-[200px]">
+          <div>
+            <label htmlFor="firstname">First Name <span className="text-red-700">(Required)</span>:</label>
+            <Input
+              { ...register('firstname', {
+                required: 'First Name Required',
+                pattern: {
+                  value: isValidFirstName,
+                  message: "Please only use letters in name.",
+                }
+              }) }
+              error={ errors.firstname?.message }
+              id="firstname"
+              autoComplete="given-name"
+              type="text"
+            />
+          </div>
+          <div>
+            <label htmlFor="email">E-Mail <span className="text-red-700">(Required)</span>:</label>
+            <Input
+              { ...register('email', {
+              required: "E-Mail Required",
+              pattern: {
+                value: isValidEmail,
+                message: "Please enter a valid e-mail",
+              },
+            }) }
+            error={ errors.email?.message }
+            id="email"
+            requirements="Format: test@test.com"
+            autoComplete="email"
+            type="email"
+          />
+          </div>
+          <div>
+            <label htmlFor="password">Password <span className="text-red-700">(Required)</span>:</label>
+          <Input
+            { ...register("password", {
+              required: "Password Required",
+              minLength: {
+                value: 8,
+                message: "Please use at least 8 characters",
+              },
+            }) }
+            error={ errors.password?.message }
+            type="password"
+            autoComplete="new-password"
+            requirements="Password must contain at least 8 characters."
+          />
+        </div>
+        </div>
+        <Button cta="Next"/>
+      </form>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import updateAction from "../utils/updateAction";
+import { Helmet } from 'react-helmet'
 
 const FORM_SUBMIT_ENDPOINT = "http://localhost:3001/api/submit";
 
@@ -37,27 +38,32 @@ const Confirmation = () => {
 
   // Assumption: All fields are visible to the user on load (even password)
   return (
-    <form data-testid="confirmation-form" onSubmit={handleSubmit(onSubmit)}>
+    <>
+      <Helmet>
+        <title>Sign Up Confirmation | Upgrade Challenge</title>
+      </Helmet>
       <h1 className="text-2xl text-center mb-6">Confirmation</h1>
-      <div className="flex flex-col mb-6 min-h-[200px] items-center">
-        <ul className="list-disc">
-          <li>First Name: {state.name}</li>
-          <li>E-Mail: {state.email}</li>
-          <li>Password: {state.password}</li>
-          <li>Favorite Color: {state.color}</li>
-          <li>Terms and Conditions: {state.terms ? "Agreed" : "Not Agreed"}</li>
-        </ul>
-      </div>
-      <Button
-        className="mr-2"
-        cta="Back"
-        type="button"
-        onClick={() => onBackButtonClick()}
-        variant="secondary"
-      />
-      <Button cta="Submit" loading={loading} />
-    </form>
-  );
-};
+      <form data-testid="confirmation-form" onSubmit={ handleSubmit(onSubmit) }>
+        <div className="flex flex-col mb-6 min-h-[200px] items-center">
+          <ul className="list-disc">
+            <li>First Name: { state.name }</li>
+            <li>E-Mail: { state.email }</li>
+            <li>Password: { state.password }</li>
+            <li>Favorite Color: { state.color }</li>
+            <li>Terms and Conditions: { state.terms ? "Agreed" : "Not Agreed" }</li>
+          </ul>
+        </div>
+        <Button
+          className="mr-2"
+          cta="Back"
+          type="button"
+          onClick={ () => onBackButtonClick() }
+          variant="secondary"
+        />
+        <Button cta="Submit" loading={ loading }/>
+      </form>
+      </>
+      );
+      };
 
-export default Confirmation;
+      export default Confirmation;
