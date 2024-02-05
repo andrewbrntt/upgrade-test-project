@@ -7,7 +7,7 @@ import mockFetch from "../../test/utils/mockFetch";
 import Confirmation from "./Confirmation";
 
 const INITIAL_STATE = {
-  name: "john",
+  firstname: "john",
   email: "john@gmail.com",
   password: "test1234",
   color: "red",
@@ -58,13 +58,12 @@ it("renders without crashing", () => {
 
 it("displays all stored values", async () => {
   setup(<Confirmation />);
-
-  await screen.findByText(`First Name: ${INITIAL_STATE.name}`);
-  await screen.findByText(`E-Mail: ${INITIAL_STATE.email}`);
-  await screen.findByText(`Password: ${INITIAL_STATE.password}`);
-  await screen.findByText(`Favorite Color: ${INITIAL_STATE.color}`);
+  await screen.findByText(INITIAL_STATE.firstname);
+  await screen.findByText(INITIAL_STATE.email);
+  await screen.findByText(INITIAL_STATE.password);
+  await screen.findByText(INITIAL_STATE.color);
   await screen.findByText(
-    `Terms and Conditions: ${INITIAL_STATE.terms ? "Agreed" : "Not Agreed"}`
+    INITIAL_STATE.terms ? "Agreed" : "Not Agreed"
   );
 });
 
@@ -81,7 +80,7 @@ it("handles unchecked terms", async () => {
 
   setup(<Confirmation />);
 
-  await screen.findByText("Terms and Conditions: Not Agreed");
+  await screen.findByText("Not Agreed");
 });
 
 it("handles back button", async () => {

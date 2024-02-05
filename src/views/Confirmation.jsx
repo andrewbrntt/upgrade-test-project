@@ -45,11 +45,11 @@ const Confirmation = () => {
       <form data-testid="confirmation-form" onSubmit={ handleSubmit(onSubmit) }>
         <div className="flex flex-col mb-6 min-h-[200px] items-center">
           <ul className="list-disc">
-            <li>First Name: { state.firstname }</li>
-            <li>E-Mail: { state.email }</li>
-            <li>Password: { state.password }</li>
-            <li>Favorite Color: { state.color }</li>
-            <li>Terms and Conditions: { state.terms ? "Agreed" : "Not Agreed" }</li>
+              <li><span className='font-bold'>First Name:</span> { state.firstname }</li>
+              <li><span className='font-bold'>E-Mail:</span> {state.email}</li>
+              <li><span className='font-bold'>Password:</span> {state.password}</li>
+              <li><span className='font-bold'>Favorite Color:</span> {state.color}</li>
+              <li><span className='font-bold'>Terms and Conditions:</span> {state.terms ? "Agreed" : "Not Agreed" }</li>
           </ul>
         </div>
         <Button

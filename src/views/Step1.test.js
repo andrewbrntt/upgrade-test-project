@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import Step1 from "./Step1";
 
 const INITIAL_STATE = {
-  name: "",
+  firstname: "",
   email: "",
   password: "",
   color: "",
@@ -44,16 +44,16 @@ it("handles invalid name input field", async () => {
   const { user } = setup(<Step1 />);
 
   await user.click(screen.getByText(/Next/i));
-  await screen.findByText(/Name required/i);
+  await screen.findByText(/Name Required/i);
 });
 
 it("handles invalid email input field", async () => {
   const { user } = setup(<Step1 />);
 
   await user.click(screen.getByText(/Next/i));
-  await screen.findByText(/E-Mail required/i);
+  await screen.findByText(/E-Mail Required/i);
 
-  await user.type(screen.getByPlaceholderText("E-Mail"), "john");
+  await user.type(screen.getByTestId("email-input"), "john");
   await screen.findByText(/Please enter a valid e-mail/i);
 });
 
@@ -61,9 +61,9 @@ it("handles invalid password input field", async () => {
   const { user } = setup(<Step1 />);
 
   await user.click(screen.getByText(/Next/i));
-  await screen.findByText(/Password required/i);
+  await screen.findByText(/Password Required/i);
 
-  await user.type(screen.getByPlaceholderText("Password"), "test");
+  await user.type(screen.getByTestId("password-input"), "test");
   await screen.findByText(/Please use at least 8 characters/i);
 });
 
@@ -73,9 +73,9 @@ it("handles next button with valid input fields", async () => {
 
   const { user } = setup(<Step1 />);
 
-  await user.type(screen.getByPlaceholderText("First Name"), "john");
-  await user.type(screen.getByPlaceholderText("E-Mail"), "john@gmail.com");
-  await user.type(screen.getByPlaceholderText("Password"), "test1234");
+  await user.type(screen.getByTestId("fname-input"), "john");
+  await user.type(screen.getByTestId("email-input"), "john@gmail.com");
+  await user.type(screen.getByTestId("password-input"), "test1234");
   await user.click(screen.getByText(/Next/i));
   expect(useNavigateMock).toHaveBeenCalled();
 });

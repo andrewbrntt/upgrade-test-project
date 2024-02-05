@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 import ConfirmationStatus from "./ConfirmationStatus";
 
 const INITIAL_STATE = {
-  name: "john",
+  firstname: "john",
   email: "john@gmail.com",
   password: "test1234",
   color: "red",

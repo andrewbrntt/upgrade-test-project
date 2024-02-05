@@ -13,11 +13,11 @@ app.get('/api/colors', (req, res) => setTimeout(() => res.json([
   'green',
   'red',
   'white'
-]), 5000));
+]), 3000 * Math.random()));
 
 app.post('/api/submit', express.json(), (req, res) => setTimeout(() => {
-  const { name, email, password, color, terms } = req.body;
-  if (name && email && password && color && terms && name !== 'Error') {
+  const { firstname, email, password, color, terms } = req.body;
+  if (firstname && email && password && color && terms && firstname !== 'Error') {
     res.sendStatus(200);
   } else {
     res.type('json');

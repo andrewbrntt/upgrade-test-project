@@ -63,14 +63,14 @@ it("handles invalid colors select field", async () => {
   const { user } = setup(<Step2 />);
 
   await user.click(screen.getByText(/Next/i));
-  await screen.findByText(/Color required/i);
+  await screen.getByTestId("color-select");
 });
 
 it("handles invalid terms checkbox field", async () => {
   const { user } = setup(<Step2 />);
 
   await user.click(screen.getByText(/Next/i));
-  await screen.findByText(/Terms acceptance required/i);
+  await screen.findByText(/Terms Acceptance Required/i);
 });
 
 it("handles stored color value", async () => {

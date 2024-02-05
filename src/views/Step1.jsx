@@ -61,6 +61,7 @@ const Step1 = () => {
                 id="firstname"
                 autoComplete="given-name"
                 type="text"
+                data-testid="fname-input"
             />
           </div>
           <div>
@@ -79,6 +80,7 @@ const Step1 = () => {
             requirements="Format: test@test.com"
             autoComplete="email"
             type="email"
+                data-testid="email-input"
           />
           </div>
           <div>
@@ -96,6 +98,7 @@ const Step1 = () => {
             autoComplete="new-password"
             requirements="Password must contain at least 8 characters."
             id="password"
+                data-testid="password-input"
           />
         </div>
         </div>
