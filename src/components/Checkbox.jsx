@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
 // Standard checkbox component with error styling
 // Usually I would add a label to the input but for this specific use case, a link is not accessible when part of a label so opted for no label
@@ -26,4 +27,10 @@ const Checkbox = forwardRef(({ children, error, isRequired, ...props }, forwardR
   );
 });
 
+Checkbox.propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node,
+    error: PropTypes.string,
+    isRequired: PropTypes.bool
+};
 export default Checkbox;

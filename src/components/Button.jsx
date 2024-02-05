@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
 const styles = {
   primary: "text-white bg-blue-700 hover:bg-blue-600 hover:border-blue-600",
@@ -33,4 +34,10 @@ const Button = forwardRef(
   }
 );
 
+Button.propTypes = {
+    className: PropTypes.string,
+    cta: PropTypes.string,
+    loading: PropTypes.bool,
+    variant: PropTypes.string
+};
 export default Button;

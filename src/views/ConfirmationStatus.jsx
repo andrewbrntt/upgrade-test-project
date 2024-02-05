@@ -8,6 +8,7 @@ import successPng from "../images/success.png";
 import { INITIAL_STATE } from "../utils/constants";
 import updateAction from "../utils/updateAction";
 import FocusableHeader from "../components/FocusableHeader";
+import {Helmet} from "react-helmet";
 
 const SUCCESS_MESSAGE = "You should receive a confirmation email soon.";
 const ERROR_MESSAGE = "Uh oh, something went wrong. Please try again later.";
@@ -25,6 +26,10 @@ const ConfirmationStatus = ({ status }) => {
   };
 
   return (
+      <>
+      <Helmet>
+          <title>{`Sign Up Submit ${isSuccessfulConfirmation ? "Success" : "Error"} | Upgrade Challenge`}</title>
+      </Helmet>
     <div data-testid="confirmation-status-view">
       <FocusableHeader className="text-2xl text-center mb-6">
         {isSuccessfulConfirmation ? "Success!" : "Error"}
@@ -41,6 +46,7 @@ const ConfirmationStatus = ({ status }) => {
         </div>
         <Button cta="Restart" onClick={() => onRestartClick()} />
     </div>
+      </>
   );
 };
 

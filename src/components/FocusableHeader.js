@@ -14,7 +14,7 @@ const FocusableHeader = ({children, className, ...props}) => {
 }
 
 FocusableHeader.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
   className: PropTypes.string
 };
 export default FocusableHeader

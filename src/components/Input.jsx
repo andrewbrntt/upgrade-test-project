@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
 // Standard input component with error styling
 const Input = forwardRef(({ requirements, error, isRequired, ...props }, forwardRef) => {
@@ -25,5 +26,12 @@ const Input = forwardRef(({ requirements, error, isRequired, ...props }, forward
     </div>
   );
 });
+
+Input.propTypes = {
+    error: PropTypes.string,
+    requirements: PropTypes.string,
+    children: PropTypes.node,
+    isRequired: PropTypes.bool
+};
 
 export default Input;

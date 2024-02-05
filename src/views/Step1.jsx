@@ -8,7 +8,6 @@ import updateAction from "../utils/updateAction";
 import { isValidEmail, isValidFirstName } from '../utils/validation'
 import { Helmet } from 'react-helmet'
 import FocusableHeader from "../components/FocusableHeader";
-// import FocusableHeader from '../components/FocusableHeader'
 
 // Opted to use react-hook-form for handling form state
 const Step1 = () => {

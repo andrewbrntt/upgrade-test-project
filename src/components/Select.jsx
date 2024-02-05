@@ -64,6 +64,7 @@ Select.propTypes = {
   error: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string),
+  isRequired: PropTypes.bool
 };
 
 export default Select;

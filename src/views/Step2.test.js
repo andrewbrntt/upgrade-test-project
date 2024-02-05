@@ -63,7 +63,7 @@ it("handles invalid colors select field", async () => {
   const { user } = setup(<Step2 />);
 
   await user.click(screen.getByText(/Next/i));
-  await screen.getByTestId("color-select");
+  screen.getByTestId("color-select");
 });
 
 it("handles invalid terms checkbox field", async () => {
