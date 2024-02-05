@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React, { forwardRef } from "react";
 
 // Standard input component with error styling
-const Input = forwardRef(({ requirements, error, ...props }, forwardRef) => {
+const Input = forwardRef(({ requirements, error, isRequired, ...props }, forwardRef) => {
   return (
     <div className="flex flex-col mb-5">
       <input
@@ -12,12 +12,13 @@ const Input = forwardRef(({ requirements, error, ...props }, forwardRef) => {
         )}
         ref={forwardRef}
         {...props}
+        required={isRequired}
       />
       { requirements &&
         <span>{requirements}</span>
       }
       { error && (
-        <span className="mt-1 text-red-700 font-bold" role="alert">
+        <span className="mt-1 text-rose-700 font-bold" role="alert">
           {error}
         </span>
       )}

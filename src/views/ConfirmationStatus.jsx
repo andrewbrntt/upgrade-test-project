@@ -7,6 +7,7 @@ import errorPng from "../images/error.png";
 import successPng from "../images/success.png";
 import { INITIAL_STATE } from "../utils/constants";
 import updateAction from "../utils/updateAction";
+import FocusableHeader from "../components/FocusableHeader";
 
 const SUCCESS_MESSAGE = "You should receive a confirmation email soon.";
 const ERROR_MESSAGE = "Uh oh, something went wrong. Please try again later.";
@@ -25,20 +26,20 @@ const ConfirmationStatus = ({ status }) => {
 
   return (
     <div data-testid="confirmation-status-view">
-      <h1 className="text-2xl text-center mb-6">
+      <FocusableHeader className="text-2xl text-center mb-6">
         {isSuccessfulConfirmation ? "Success!" : "Error"}
-      </h1>
-      <div className="flex flex-col mb-6 min-h-[200px] text-center items-center">
-        <img
-          className="mb-6 self-start w-11 h-11"
-          src={isSuccessfulConfirmation ? successPng : errorPng}
-          alt=""
-        />
-        <span>
-          {isSuccessfulConfirmation ? SUCCESS_MESSAGE : ERROR_MESSAGE}
-        </span>
-      </div>
-      <Button cta="Restart" onClick={() => onRestartClick()} />
+      </FocusableHeader>
+        <div className="flex flex-col mb-6 min-h-[200px] text-center items-center">
+            <p>
+                <img
+                    className="mb-6 self-start w-11 h-11 inline"
+                    src={isSuccessfulConfirmation ? successPng : errorPng}
+                    alt=""
+                />
+                {isSuccessfulConfirmation ? SUCCESS_MESSAGE : ERROR_MESSAGE}
+            </p>
+        </div>
+        <Button cta="Restart" onClick={() => onRestartClick()} />
     </div>
   );
 };

@@ -13,7 +13,7 @@ app.get('/api/colors', (req, res) => setTimeout(() => res.json([
   'green',
   'red',
   'white'
-]), 3000 * Math.random()));
+]), 5000));
 
 app.post('/api/submit', express.json(), (req, res) => setTimeout(() => {
   const { name, email, password, color, terms } = req.body;

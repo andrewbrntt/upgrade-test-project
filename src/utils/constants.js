@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 export const INITIAL_STATE = {
-  name: "",
+  firstname: "",
   email: "",
   password: "",
   color: "",

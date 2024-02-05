@@ -8,10 +8,11 @@ import Select from "../components/Select";
 import updateAction from "../utils/updateAction";
 import { Helmet } from 'react-helmet'
 import openNewTabIcon from "../images/arrow-up-right-from-square-solid.svg";
+import FocusableHeader from '../components/FocusableHeader'
 
 const COLORS_ENDPOINT = "http://localhost:3001/api/colors";
 
-const Step1 = () => {
+const Step2 = () => {
   const [colors, setColors] = useState(null);
   const navigate = useNavigate();
   const { actions, state } = useStateMachine({ updateAction });
@@ -78,64 +79,69 @@ const Step1 = () => {
   // Assumption 2: Terms and Conditions is required
   // See Checkbox component for comment regarding rendering T&C verbiage in span instead of label
   return (
-    <>
-      <Helmet>
-        <title>Sign Up Step (2/2) | Upgrade Challenge</title>
-      </Helmet>
-      <h1 className="text-2xl text-center mb-6">Sign Up (Step 2 /2)</h1>
-      <form data-testid="more-info-form" onSubmit={ handleSubmit(onSubmit) }>
-        <div className="flex flex-col mb-6 min-h-[200px]">
-          <label htmlFor="favorite-color">Select Your Favorite Color</label>
-          <Select
-            { ...register("color", {
-              required: "Color Selection Required",
-            }) }
-            data-testid="color-select"
-            defaultValue=""
-            error={ errors.color?.message }
-            options={ colors }
-            id="favorite-color"
-            placeholder="Select Your Favorite Color"
-            aria-atomic="true"
-          />
-          <Checkbox
-            { ...register("terms", {
-              required: "Terms acceptance required",
-            }) }
-            data-testid="terms-checkbox"
-            error={ errors.terms?.message }
-            id="terms-checkbox"
+      <>
+        <Helmet>
+          <title>Sign Up Step (2/2) | Upgrade Challenge</title>
+        </Helmet>
+        <FocusableHeader className="text-2xl text-center mb-6">Sign Up (Step 2 /2)</FocusableHeader>
+        <p className="text-lg mb-5">Required Fields <span className="text-rose-700 font-bold">*</span></p>
+        <form data-testid="more-info-form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col mb-6 min-h-[200px]"
           >
-          <label htmlFor="terms-checkbox" className="ml-2 inline">
-            I agree to{ ' ' }
-            <a
-              className="underline text-blue-700"
-              href="https://www.upgrade.com/funnel/borrower-documents/TERMS_OF_USE"
-              rel="noreferrer"
-              target="_blank"
+            <label htmlFor="favorite-color">Whats Your Favorite Color? <span className="text-rose-700 font-bold"
+                                                                             title="Required Field">*</span></label>
+            <Select
+                {...register("color", {
+                  required: "Color Selection Required",
+                })}
+                isRequired={true}
+                data-testid="color-select"
+                defaultValue=""
+                error={errors.color?.message}
+                options={colors}
+                id="favorite-color"
+                placeholder="Select Color"
+            />
+            <Checkbox
+                {...register("terms", {
+                  required: "Terms Acceptance Required",
+                })}
+                data-testid="terms-checkbox"
+                error={errors.terms?.message}
+                isRequired={true}
+                id="terms-checkbox"
             >
-              Terms and Conditions
-            </a>
-                    <img
-                      className="ml-2 w-4 h-4 inline"
-                      src={ openNewTabIcon }
-                      alt=""
-                    />
-            .
-          </label>
-          </Checkbox>
-        </div>
-        <Button
-          className="mr-2"
-          cta="Back"
-          type="button"
-          onClick={ () => onBackButtonClick() }
-          variant="secondary"
-        />
-        <Button cta="Next"/>
-      </form>
-    </>
+              <label htmlFor="terms-checkbox" className="ml-2 inline">
+                I agree to{' '}
+                <a
+                    className="underline text-blue-700"
+                    href="https://www.upgrade.com/funnel/borrower-documents/TERMS_OF_USE"
+                    rel="noreferrer"
+                    target="_blank"
+                >
+                  Terms and Conditions
+                </a>
+                <img
+                    className="ml-2 w-4 h-4 inline"
+                    src={openNewTabIcon}
+                    alt=""
+                />
+                <span className="text-rose-700 font-bold ml-2" title="Required Field">*</span>
+
+              </label>
+            </Checkbox>
+          </div>
+          <Button
+              className="mr-2"
+              cta="Back"
+              type="button"
+              onClick={() => onBackButtonClick()}
+              variant="secondary"
+          />
+          <Button cta="Next"/>
+        </form>
+      </>
   );
 };
 
-export default Step1;
+export default Step2;

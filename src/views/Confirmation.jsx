@@ -35,7 +35,6 @@ const Confirmation = () => {
       setLoading(false);
     }
   };
-
   // Assumption: All fields are visible to the user on load (even password)
   return (
     <>
@@ -46,7 +45,7 @@ const Confirmation = () => {
       <form data-testid="confirmation-form" onSubmit={ handleSubmit(onSubmit) }>
         <div className="flex flex-col mb-6 min-h-[200px] items-center">
           <ul className="list-disc">
-            <li>First Name: { state.name }</li>
+            <li>First Name: { state.firstname }</li>
             <li>E-Mail: { state.email }</li>
             <li>Password: { state.password }</li>
             <li>Favorite Color: { state.color }</li>

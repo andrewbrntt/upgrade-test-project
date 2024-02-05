@@ -8,26 +8,30 @@ import React, { forwardRef } from "react";
 // Assumption 2: loading select component displays spinner inline with placeholder text and loading text as lone option
 // Assumption 3: unopened/unselected select component will display placeholder text
 const Select = forwardRef(
-  ({ error, options, placeholder, ...props }, forwardRef) => {
+  ({ error, options, placeholder, isRequired, ...props }, forwardRef) => {
+
     return (
       <div className="flex flex-col mb-5">
         <div className="relative max-w-[300px]">
           <select
             className={clsx(
-              "border border-black h-11 px-3 w-full",
+              "border border-black h-11 px-3 w-full capitalize",
               error && "border-red-700 focus:outline-none focus:ring focus:ring-red-700"
             )}
             ref={forwardRef}
             {...props}
+              required={isRequired}
+            aria-live="polite"
+            aria-busy={options ? "false" : "true"}
           >
             {placeholder && (
               <option value="" disabled>
-                {placeholder}
+                {options ? placeholder : 'Loading...'}
               </option>
             )}
             {options ? (
               options.map((o) => (
-                <option key={o} value={o} className="uppercase">
+                <option key={o} value={o} className="capitalize">
                   {o}
                 </option>
               ))
@@ -47,7 +51,7 @@ const Select = forwardRef(
           )}
         </div>
         { error && (
-          <span className="mt-1 text-red-700 font-bold" role="alert">
+          <span className="mt-1 text-rose-700 font-bold" role="alert">
           {error}
         </span>
         )}

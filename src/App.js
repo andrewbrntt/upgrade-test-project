@@ -7,7 +7,7 @@ import Step1 from "./views/Step1";
 import Step2 from "./views/Step2";
 import Confirmation from "./views/Confirmation";
 import ConfirmationStatus from "./views/ConfirmationStatus";
-import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
 
 // Opted to use a small state management library for this multi-step wizard form
 // The benefit of this is mainly user experience, to not have to restart the form on accidental refresh or window close
@@ -21,11 +21,6 @@ class App extends Component {
   render() {
     return (
       <StateMachineProvider>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>My Title</title>
-          <link rel="canonical" href="http://mysite.com/example" />
-        </Helmet>
         <Router>
           <Routes>
             <Route path="/" element={<Layout />}>

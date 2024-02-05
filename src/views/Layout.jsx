@@ -7,9 +7,9 @@ export default function Layout() {
       data-testid="layout"
       className="min-h-screen flex flex-col items-center pt-10"
     >
-      <div className="w-full px-6 xs:mx-auto min-w-[327px] max-w-lg">
+      <main className="w-full px-6 xs:mx-auto min-w-[327px] max-w-lg">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 }

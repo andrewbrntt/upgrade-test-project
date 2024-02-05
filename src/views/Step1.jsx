@@ -7,6 +7,8 @@ import Input from "../components/Input";
 import updateAction from "../utils/updateAction";
 import { isValidEmail, isValidFirstName } from '../utils/validation'
 import { Helmet } from 'react-helmet'
+import FocusableHeader from "../components/FocusableHeader";
+// import FocusableHeader from '../components/FocusableHeader'
 
 // Opted to use react-hook-form for handling form state
 const Step1 = () => {
@@ -40,30 +42,33 @@ const Step1 = () => {
       <Helmet>
         <title>Sign Up Step (1/2) | Upgrade Challenge</title>
       </Helmet>
-      <h1 className="text-2xl text-center mb-6">Sign Up (Step 1/2)</h1>
-      <form data-testid="signup-form" onSubmit={ handleSubmit(onSubmit) }>
+      <FocusableHeader className="text-2xl text-center mb-6">Sign Up (Step 1/2)</FocusableHeader>
+      <p className="text-lg mb-5">Required Fields <span className="text-rose-700 font-bold">*</span></p>
+      <form data-testid="signup-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col mb-6 min-h-[200px]">
           <div>
-            <label htmlFor="firstname">First Name <span className="text-red-700">(Required)</span>:</label>
+            <label htmlFor="firstname">First Name <span className="text-rose-700 font-bold" title="Required Field">*</span></label>
             <Input
-              { ...register('firstname', {
-                required: 'First Name Required',
-                pattern: {
-                  value: isValidFirstName,
-                  message: "Please only use letters in name.",
-                }
-              }) }
-              error={ errors.firstname?.message }
-              id="firstname"
-              autoComplete="given-name"
-              type="text"
+                {...register('firstname', {
+                  required: 'First Name Required',
+                  pattern: {
+                    value: isValidFirstName,
+                    message: "Please only use letters in name.",
+                  }
+                })}
+                error={errors.firstname?.message}
+                isRequired={true}
+                id="firstname"
+                autoComplete="given-name"
+                type="text"
             />
           </div>
           <div>
-            <label htmlFor="email">E-Mail <span className="text-red-700">(Required)</span>:</label>
+            <label htmlFor="email">E-Mail <span className="text-rose-700 font-bold"
+                                                title="Required Field">*</span></label>
             <Input
-              { ...register('email', {
-              required: "E-Mail Required",
+                {...register('email', {
+                  required: "E-Mail Required",
               pattern: {
                 value: isValidEmail,
                 message: "Please enter a valid e-mail",
@@ -77,10 +82,10 @@ const Step1 = () => {
           />
           </div>
           <div>
-            <label htmlFor="password">Password <span className="text-red-700">(Required)</span>:</label>
-          <Input
-            { ...register("password", {
-              required: "Password Required",
+            <label htmlFor="password">Password <span className="text-rose-700 font-bold" title="Required Field">*</span></label>
+            <Input
+                {...register("password", {
+                  required: "Password Required",
               minLength: {
                 value: 8,
                 message: "Please use at least 8 characters",
@@ -90,6 +95,7 @@ const Step1 = () => {
             type="password"
             autoComplete="new-password"
             requirements="Password must contain at least 8 characters."
+            id="password"
           />
         </div>
         </div>
